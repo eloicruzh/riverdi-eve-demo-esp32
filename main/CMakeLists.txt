@@ -1,0 +1,12 @@
+idf_component_register(INCLUDE_DIRS
+                       "."
+                       "../riverdi-eve-lib/riverdi_modules"
+                       "../riverdi-eve-lib/eve_layer"
+                       "../riverdi-eve-lib/app_layer"
+                       SRCS
+                       "platform.c"
+                       "riverdi-demo.c"
+                       "../riverdi-eve-lib/eve_layer/Gpu_Hal.c"
+                       "../riverdi-eve-lib/eve_layer/CoPro_Cmds.c"
+                       "../riverdi-eve-lib/eve_layer/Hal_Utils.c"
+                       "../riverdi-eve-lib/app_layer/App_Common.c")
