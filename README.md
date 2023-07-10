@@ -27,6 +27,8 @@ For different chip the connections may be different - please check *main/platfor
 COMPILATION
 -----------
 
+__Note:__ *before compilation, please edit CMakeLists.txt file to choose Embedded Video Engine series (-DEVE_1, -DEVE_2, -DEVE_3 or -DEVE_4 flags), choose type and size of connected TFT module (choose predefined macros for Riverdi EVE modules or edit timings manually in modules.h file for custom displays) or to adjust compilation settings.*
+
 [1] Set up the environment variables:
 
 `. /path/to/esp-idf/export.sh`
