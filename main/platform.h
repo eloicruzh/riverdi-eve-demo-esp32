@@ -42,16 +42,20 @@ typedef float          float_t;
 #define SPI_BITS      8
 #define SPI_SPEED_HZ	20000000
 
+
 #ifdef CONFIG_IDF_TARGET_ESP32
 
 #define SPI_DEVICE    HSPI_HOST
+
+#warning "Compiling for SPI_DEVICE  HSPI_HOST"
+
 typedef enum {
-  GPIO_MISO = 25,
+  GPIO_MISO = 19,
   GPIO_MOSI = 23,
-  GPIO_SCLK = 19,
-  GPIO_CS   = 21,
-  GPIO_PD   = 18,
-  GPIO_INT  = 5
+  GPIO_SCLK = 18,
+  GPIO_CS   = 5,
+  GPIO_PD   = 22,
+  GPIO_INT  = 26
 } gpio_name;
 
 #elif defined CONFIG_IDF_TARGET_ESP32S2 || \

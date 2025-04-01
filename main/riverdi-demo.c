@@ -3,18 +3,45 @@
 #include "freertos/task.h"
 
 #include "platform.h"
+#include "esp_log.h"
 #include "App_Common.h"
 
 Gpu_Hal_Context_t host, *phost;
 
 static void SAMAPP_GPU_Ball_Stencil();
 
+static void check_spi(Gpu_Hal_Context_t *phost)
+{
+    // Read the ID register, which should be 0x7C for BT817/818
+    uint8_t id = Gpu_Hal_Rd8(phost, REG_ID);
+
+    ESP_LOGI("APP_MAIN", "BT817 REG_ID = 0x%02X\n", id);
+
+
+    if (id == 0x7C)
+    {
+      ESP_LOGI("APP_MAIN", "SPI OK, BT817 recognized!\n");
+    }
+    else
+    {
+      ESP_LOGI("APP_MAIN","SPI FAIL, got 0x%02X instead of 0x7C\n", id);
+
+        // If you get 0x00, 0xFF, or anything else, 
+        // it means there is a wiring or pin-configuration issue.
+    }
+}
+
+
 void app_main(void)
 {
+  ESP_LOGI("APP_MAIN", "Starting up ...");
+
   phost = &host;
 
   /* Init HW Hal */
   App_Common_Init(&host);
+
+  check_spi(phost);
 
   /* Screen Calibration*/
   //App_Calibrate_Screen(&host);
@@ -26,6 +53,7 @@ void app_main(void)
   xTaskCreate(SAMAPP_GPU_Ball_Stencil, "ball-task", 4096, NULL,
               tskIDLE_PRIORITY, NULL);
 }
+
 
 static void
 SAMAPP_GPU_Ball_Stencil()

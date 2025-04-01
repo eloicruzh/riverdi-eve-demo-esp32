@@ -1,0 +1,14 @@
+{
+    "idf.customExtraVars": {
+        "IDF_TARGET": "esp32"
+    },
+    "idf.flashType": "UART",
+    "idf.portWin": "COM4",
+    "idf.openOcdConfigs": [
+        "interface/ftdi/esp32_devkitj_v1.cfg",
+        "target/esp32.cfg"
+    ],
+    "files.associations": {
+        "app_common.h": "c"
+    }
+}
